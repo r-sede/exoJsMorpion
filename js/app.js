@@ -14,11 +14,28 @@ function afficheTableauVide(w,h,id){
 
 }
 
+var Pion = function (x,y,owner,pionArr){
+	this.posX=x;
+	this.posY=y;
+	this.owner= owner;
+	pionArr.push(this);
+
+};
 
 
 
 $(document).ready(function(){
 
 afficheTableauVide(3,3,"#maVue");
+
+var pionArray = [];
+
+//j1 =true j2 = false;
+var turn = true;
+
+console.log(pionArray);
+var test = new Pion(0,0,'j1',pionArray);
+console.log("after New Pion", pionArray);
+
 
 });
