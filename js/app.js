@@ -41,27 +41,69 @@ function whichPlayer(turnNumb){
 	return turnNumb %2;
 }
 
+function checkWin(){
 
-$(document).ready(function(){
+	var table = [['S','S','S'], ['S','S','S'], ['S','S','S']];
+	for (var i = 0; i < pionArray.length; i++) {
+		var cx = pionArray[i].posX;
+		var cy = pionArray[i].posY;
+		var ownjoueur = pionArray[i].owner;
+		console.log(cx,cy);
+
+		table[cy][cx] = joueurs[ownjoueur];
+	}
+			
+	
+		// verifie les ligne du tableau
+		if (table[0][0] == table[0][1] && table[0][0] == table[0][2]) {
+			alert("vous aver gagner");
+		}
+		else if(table[1][0] == table[1][1] && table[1][0] == table[1][2] && table[1][0] == joueurs[whichPlayer(turn)]){
+		alert("vous aver gagner");
+		}
+
+		else if(table[2][0] == table[2][1] && table[2][0] == table[2][2] && table[2][0] == joueurs[whichPlayer(turn)]){
+		alert("vous aver gagner");
+		}
+
+		//Verifie les colonnes du tableau
+		else if(table[0][0] == table[1][0] && table[0][0] == table[2][0] && table[0][0] == joueurs[whichPlayer(turn)]){
+		alert("vous aver gagner");
+		}
+		else if(table[0][1] == table[1][1] && table[0][1] == table[2][1] && table[0][1] == joueurs[whichPlayer(turn)]){
+		alert("vous aver gagner");
+		}
+		else if(table[0][2] == table[1][2] && table[0][2] == table[2][2] && table[0][2] == joueurs[whichPlayer(turn)]){
+		alert("vous aver gagner");
+		}
+
+		//Verifie les diagonales du tableau
+		else if(table[0][0] == table[1][1] && table[0][0] == table[2][2] && table[0][0] == joueurs[whichPlayer(turn)]){
+		alert("vous aver gagner");
+		}
+		else if(table[0][2] == table[1][1] && table[0][2] == table[2][0] && table[1][0] == joueurs[whichPlayer(turn)]){
+			alert("vous aver gagner");
+		}	
+	
+		
+
+}
+//liste de pions en jeu
+var pionArray = [];
 //carac representant les pions des joueurs
 var joueurs = ["X","O"];
 
-//liste de pions en jeu
-var pionArray = [];
-
 //j1 =true j2 = false;
 var turn = 0;
+
+$(document).ready(function(){
+
+
 
 
 afficheTableauVide(3,3,"#maVue");
 
 
-//test !!!
-// console.log(pionArray);
-// var test = new Pion(0,0,0,pionArray);
-// var test2 = new Pion(0,2,1,pionArray);
-
-// console.log("after New Pion", pionArray);
 afficheLesPions(pionArray,joueurs);
 
 
@@ -75,9 +117,11 @@ $('.cell').on('click',function(){
 	var npY	= tt[1];
 
 	var nPion = new Pion(npX,npY,whichPlayer(turn),pionArray);
-	//checkVictory
+	//checkVictory !!! manque plus que ca !!!!
+	checkWin();
 	turn ++;
-	//remove handler
+	
+	//remove listener pour eviter de placer un pion sur une case occupé
 	$(this).off();
 	afficheLesPions(pionArray,joueurs);
 
