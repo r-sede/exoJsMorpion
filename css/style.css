@@ -1,0 +1,13 @@
+table {
+  table-layout: fixed;
+  width: 100%;
+  //border-collapse: separate;
+  
+}
+
+ td {
+	display: table-cell;
+	vertical-align: inherit;
+  padding: 20px;
+  border: 1px solid black;
+}
